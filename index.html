@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QuizNest - Fun Personality, Love, Career & IQ Quizzes</title>
+
+    <meta name="description"
+        content="Take fun personality, love, friendship, career, introvert, extrovert and IQ quizzes on QuizNest. Discover something interesting about yourself.">
+
+    <meta name="keywords"
+        content="personality quiz, love quiz, friendship quiz, career quiz, IQ quiz, introvert quiz, extrovert quiz, fun quizzes">
+
+    <meta name="author" content="Fatima">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="QuizNest - Fun Quizzes">
+    <meta property="og:description"
+        content="Take fun quizzes and discover something new about yourself.">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="QuizNest - Fun Quizzes">
+    <meta name="twitter:description"
+        content="Discover your personality, love style, career match and more.">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            <span>🧠</span> QuizNest
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#quizzes">Quizzes</a>
+            <a href="#categories">Categories</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <button class="theme-btn" onclick="toggleDarkMode()">
+            🌙
+        </button>
+
+    </header>
+
+
+    <!-- HOME -->
+
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                ✨ Fun & Free Quizzes
+            </div>
+
+            <h1>
+                Discover Your
+                <span>Personality</span>
+            </h1>
+
+            <p>
+                Take fun quizzes and discover something new
+                about yourself.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button class="main-btn" onclick="showQuizzes()">
+                    Explore Quizzes 🚀
+                </button>
+
+                <button class="random-btn" onclick="randomQuiz()">
+                    🎲 Random Quiz
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- AD SPACE -->
+
+    <div class="ad-container">
+        <span>Advertisement</span>
+    </div>
+
+
+    <!-- CATEGORIES -->
+
+    <section id="categories" class="categories">
+
+        <div class="section-heading">
+
+            <span>CATEGORIES</span>
+
+            <h2>Find Your Quiz</h2>
+
+            <p>
+                Choose a category and discover something
+                interesting about yourself.
+            </p>
+
+        </div>
+
+        <div class="category-grid">
+
+            <button onclick="filterQuizzes('all')">
+                ✨ All
+            </button>
+
+            <button onclick="filterQuizzes('personality')">
+                🧠 Personality
+            </button>
+
+            <button onclick="filterQuizzes('love')">
+                ❤️ Love
+            </button>
+
+            <button onclick="filterQuizzes('friend')">
+                👥 Friendship
+            </button>
+
+            <button onclick="filterQuizzes('career')">
+                💼 Career
+            </button>
+
+            <button onclick="filterQuizzes('iq')">
+                🧩 IQ
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUIZZES -->
+
+    <section id="quizzes" class="quizzes">
+
+        <div class="section-heading">
+
+            <span>EXPLORE</span>
+
+            <h2>Choose Your Quiz</h2>
+
+            <p>
+                Answer a few simple questions and discover
+                something interesting about yourself.
+            </p>
+
+        </div>
+
+
+        <div class="quiz-grid">
+
+
+            <!-- PERSONALITY -->
+
+            <div class="quiz-card" data-category="personality">
+
+                <div class="card-icon purple">
+                    🧠
+                </div>
+
+                <div class="quiz-tag">
+                    ⭐ Popular
+                </div>
+
+                <h3>
+                    What Is Your Personality Type?
+                </h3>
+
+                <p>
+                    Discover whether you are social,
+                    creative, calm or ambitious.
+                </p>
+
+                <div class="quiz-info">
+                    <span>6 Questions</span>
+                    <span>⏱ 2 Min</span>
+                </div>
+
+                <button onclick="startQuiz('personality')">
+                    Take Quiz →
+                </button>
+
+            </div>
+
+
+            <!-- FRIEND -->
+
+            <div class="quiz-card" data-category="friend">
+
+                <div class="card-icon pink">
+                    ❤️
+                </div>
+
+                <h3>
+                    What Type of Friend Are You?
+                </h3>
+
+                <p>
+                    Find out what kind of friend you are
+                    in your relationships.
+                </p>
+
+                <div class="quiz-info">
+                    <span>6 Questions</span>
+                    <span>⏱ 2 Min</span>
+                </div>
+
+                <button onclick="startQuiz('friend')">
+                    Take Quiz →
+                </button>
+
+            </div>
+
+
+            <!-- CAREER -->
+
+            <div class="quiz-card" data-category="career">
+
+                <div class="card-icon blue">
+                    💼
+                </div>
+
+                <h3>
+                    What Career Suits You?
+                </h3>
+
+                <p>
+                    Discover which type of career matches
+                    your personality.
+                </p>
+
+                <div class="quiz-info">
+                    <span>6 Questions</span>
+                    <span>⏱ 2 Min</span>
+                </div>
+
+                <button onclick="startQuiz('career')">
+                    Take Quiz →
+                </button>
+
+            </div>
+
+
+            <!-- LOVE -->
+
+            <div class="quiz-card" data-category="love">
+
+                <div class="card-icon red">
+                    💕
+                </div>
+
+                <div class="quiz-tag new">
+                    NEW
+                </div>
+
+                <h3>
+                    What Is Your Love Style?
+                </h3>
+
+                <p>
+                    Discover how you show love and what
+                    matters most to you in relationships.
+                </p>
+
+                <div class="quiz-info">
+                    <span>6 Questions</span>
+                    <span>⏱ 2 Min</span>
+                </div>
+
+                <button onclick="startQuiz('love')">
+                    Take Quiz →
+                </button>
+
+            </div>
+
+
+            <!-- INTROVERT -->
+
+            <div class="quiz-card" data-category="personality">
+
+                <div class="card-icon green">
+                    🌿
+                </div>
+
+                <div class="quiz-tag new">
+                    NEW
+                </div>
+
+                <h3>
+                    Introvert or Extrovert?
+                </h3>
+
+                <p>
+                    Discover whether you recharge around
+                    people or prefer your own space.
+                </p>
+
+                <div class="quiz-info">
+                    <span>6 Questions</span>
+                    <span>⏱ 2 Min</span>
+                </div>
+
+                <button onclick="startQuiz('introvert')">
+                    Start Quiz →
+                </button>
+
+            </div>
+
+
+            <!-- IQ -->
+
+            <div class="quiz-card" data-category="iq">
+
+                <div class="card-icon yellow">
+                    🧩
+                </div>
+
+                <div class="quiz-tag new">
+                    NEW
+                </div>
+
+                <h3>
+                    Fun IQ Challenge
+                </h3>
+
+                <p>
+                    Test your logic, patterns and
+                    problem-solving skills.
+                </p>
+
+                <div class="quiz-info">
+                    <span>6 Questions</span>
+                    <span>⏱ 3 Min</span>
+                </div>
+
+                <button onclick="startQuiz('iq')">
+                    Start Challenge →
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- AD SPACE -->
+
+    <div class="ad-container">
+        <span>Advertisement</span>
+    </div>
+
+
+    <!-- QUIZ AREA -->
+
+    <section id="quiz-area" class="quiz-area">
+
+        <div class="quiz-container">
+
+            <div class="quiz-top">
+
+                <button class="back-btn" onclick="backToQuizzes()">
+                    ← Back
+                </button>
+
+                <span id="progress">
+                    Question 1 of 6
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div id="progress-fill"></div>
+
+            </div>
+
+
+            <div class="question-card">
+
+                <div class="question-icon">
+                    🧠
+                </div>
+
+                <h2 id="question">
+                    Question
+                </h2>
+
+                <div id="answers"></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESULT -->
+
+    <section id="result" class="result-section">
+
+        <div class="result-card" id="result-card">
+
+            <div class="result-emoji" id="result-emoji">
+                🎉
+            </div>
+
+            <p class="result-label">
+                YOUR RESULT
+            </p>
+
+            <h1 id="result-title">
+                Your Result
+            </h1>
+
+            <p id="result-description">
+                Your result description.
+            </p>
+
+
+            <div class="score-box">
+
+                <span>Your Score</span>
+
+                <strong id="result-score">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div class="result-actions">
+
+                <button class="main-btn" onclick="restartQuiz()">
+                    🔄 Take Again
+                </button>
+
+                <button class="secondary-btn" onclick="shareWhatsApp()">
+                    💬 WhatsApp
+                </button>
+
+                <button class="secondary-btn" onclick="shareFacebook()">
+                    📘 Facebook
+                </button>
+
+                <button class="secondary-btn" onclick="downloadResult()">
+                    📸 Download
+                </button>
+
+                <button class="secondary-btn" onclick="backToQuizzes()">
+                    ← More Quizzes
+                </button>
+
+            </div>
+
+
+            <p class="share-note">
+                ❤️ Share your result with your friends!
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- RELATED QUIZZES -->
+
+    <section id="related" class="related">
+
+        <div class="section-heading">
+
+            <span>KEEP EXPLORING</span>
+
+            <h2>Try Another Quiz</h2>
+
+            <p>
+                There is always something new to discover.
+            </p>
+
+        </div>
+
+
+        <div class="related-grid">
+
+            <button onclick="startQuiz('love')">
+                ❤️ Love Quiz
+            </button>
+
+            <button onclick="startQuiz('introvert')">
+                🌿 Introvert or Extrovert
+            </button>
+
+            <button onclick="startQuiz('iq')">
+                🧩 Fun IQ Challenge
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section id="about" class="about">
+
+        <div class="about-content">
+
+            <div class="about-icon">
+                ✨
+            </div>
+
+            <span>
+                ABOUT QUIZNEST
+            </span>
+
+            <h2>
+                Fun quizzes made for everyone.
+            </h2>
+
+            <p>
+                QuizNest is a simple and fun quiz website
+                where you can explore personality, love,
+                friendship, career and IQ quizzes.
+            </p>
+
+            <div class="creator">
+                <strong>
+                    Created by Fatima ❤️
+                </strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-logo">
+            🧠 QuizNest
+        </div>
+
+        <p>
+            Have fun discovering yourself!
+        </p>
+
+        <div class="footer-links">
+
+            <a href="#home">Home</a>
+            <a href="#quizzes">Quizzes</a>
+            <a href="#about">About</a>
+
+        </div>
+
+        <div class="footer-line"></div>
+
+        <small>
+            © 2026 QuizNest. Created by Fatima.
+        </small>
+
+    </footer>
+
+
+    <!-- Download Result Library -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- Main JavaScript -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
