@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Personality Quiz - Discover Your Personality Type | QuizNest</title>
+
+    <meta name="description" content="Take the free QuizNest personality quiz and discover your personality type. Answer fun questions and learn more about yourself.">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://faisalismail-logisim3.github.io/quiz-website/personality-quiz.html">
+
+    <meta property="og:title" content="Personality Quiz - QuizNest">
+    <meta property="og:description" content="Take a fun personality quiz and discover your personality type on QuizNest.">
+    <meta property="og:url" content="https://faisalismail-logisim3.github.io/quiz-website/personality-quiz.html">
+    <meta property="og:type" content="website">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <h1>QuizNest</h1>
+        <p>Fun & Free Quizzes</p>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="quiz-page-intro">
+        <h2>Personality Quiz</h2>
+
+        <p>
+            Discover your personality type with this fun and simple personality quiz.
+            Answer the questions honestly and find out what makes you unique.
+        </p>
+
+        <p>
+            This free quiz explores different personality traits including social,
+            creative, calm and ambitious characteristics.
+        </p>
+    </section>
+
+    <section id="quiz-area">
+        <div id="question-container"></div>
+    </section>
+
+    <section id="result" style="display:none;">
+        <h2>Your Personality Result</h2>
+        <div id="result-content"></div>
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    if (typeof startQuiz === "function") {
+        startQuiz("personality");
+    }
+});
+</script>
+
+</body>
+</html>
