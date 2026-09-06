@@ -1,0 +1,325 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Friendship Quiz - What Type of Friend Are You? | QuizNest</title>
+
+    <meta name="description" content="Take our free friendship quiz and discover what type of friend you are. Are you supportive, fun, loyal or adventurous?">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://faisalismail-logisim3.github.io/quiz-website/friendship-quiz.html">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .quiz-box {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .question {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .answer-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 12px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #f7f7f7;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+
+        .answer-btn:hover {
+            background: #eee;
+        }
+
+        #result {
+            display: none;
+            text-align: center;
+        }
+
+        .restart-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #7c3aed;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #7c3aed;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <h1>QuizNest</h1>
+        <p>Fun & Free Quizzes</p>
+    </div>
+</header>
+
+<main class="container">
+
+    <div class="quiz-box">
+
+        <div id="quiz">
+
+            <h2>Friendship Quiz 🤝</h2>
+
+            <p>
+                Answer these questions and discover what type of friend you are.
+            </p>
+
+            <div id="question"></div>
+
+            <div id="answers"></div>
+
+        </div>
+
+        <div id="result">
+
+            <h2>Your Friendship Result 🎉</h2>
+
+            <h3 id="result-title"></h3>
+
+            <p id="result-text"></p>
+
+            <button class="restart-btn" onclick="restartQuiz()">
+                🔄 Take Quiz Again
+            </button>
+
+            <br>
+
+            <a class="back-btn" href="index.html">
+                ← Back to QuizNest
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+<script>
+
+const questions = [
+
+    {
+        question: "Your friend is having a bad day. What do you do?",
+        answers: [
+            { text: "Listen and support them", type: "supportive" },
+            { text: "Make them laugh", type: "fun" },
+            { text: "Remind them I am always there", type: "loyal" },
+            { text: "Take them somewhere to cheer them up", type: "adventurous" }
+        ]
+    },
+
+    {
+        question: "What do you enjoy doing with friends?",
+        answers: [
+            { text: "Talking about life", type: "supportive" },
+            { text: "Laughing and having fun", type: "fun" },
+            { text: "Spending quality time together", type: "loyal" },
+            { text: "Trying new things together", type: "adventurous" }
+        ]
+    },
+
+    {
+        question: "What is most important in friendship?",
+        answers: [
+            { text: "Understanding each other", type: "supportive" },
+            { text: "Having fun together", type: "fun" },
+            { text: "Trust and loyalty", type: "loyal" },
+            { text: "Sharing new experiences", type: "adventurous" }
+        ]
+    },
+
+    {
+        question: "Your friend needs help. What is your reaction?",
+        answers: [
+            { text: "I listen and help them", type: "supportive" },
+            { text: "I try to make the situation easier", type: "fun" },
+            { text: "I will never leave them alone", type: "loyal" },
+            { text: "I immediately look for a solution", type: "adventurous" }
+        ]
+    },
+
+    {
+        question: "How would your friends describe you?",
+        answers: [
+            { text: "Caring and understanding", type: "supportive" },
+            { text: "Funny and energetic", type: "fun" },
+            { text: "Reliable and trustworthy", type: "loyal" },
+            { text: "Brave and spontaneous", type: "adventurous" }
+        ]
+    },
+
+    {
+        question: "What makes a friendship special?",
+        answers: [
+            { text: "Being there during difficult times", type: "supportive" },
+            { text: "Creating happy memories", type: "fun" },
+            { text: "Always standing by each other", type: "loyal" },
+            { text: "Sharing exciting adventures", type: "adventurous" }
+        ]
+    }
+
+];
+
+let currentQuestion = 0;
+
+let scores = {
+    supportive: 0,
+    fun: 0,
+    loyal: 0,
+    adventurous: 0
+};
+
+function showQuestion() {
+
+    const question = questions[currentQuestion];
+
+    document.getElementById("question").innerHTML =
+        `<div class="question">
+            Question ${currentQuestion + 1} of ${questions.length}<br><br>
+            ${question.question}
+        </div>`;
+
+    const answersDiv = document.getElementById("answers");
+
+    answersDiv.innerHTML = "";
+
+    question.answers.forEach(answer => {
+
+        const button = document.createElement("button");
+
+        button.className = "answer-btn";
+
+        button.textContent = answer.text;
+
+        button.onclick = function() {
+            selectAnswer(answer.type);
+        };
+
+        answersDiv.appendChild(button);
+
+    });
+
+}
+
+function selectAnswer(type) {
+
+    scores[type]++;
+
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+
+        showQuestion();
+
+    } else {
+
+        showResult();
+
+    }
+
+}
+
+function showResult() {
+
+    document.getElementById("quiz").style.display = "none";
+
+    document.getElementById("result").style.display = "block";
+
+    let winner = "supportive";
+
+    for (let type in scores) {
+
+        if (scores[type] > scores[winner]) {
+            winner = type;
+        }
+
+    }
+
+    const results = {
+
+        supportive: {
+            title: "You Are the Supportive Friend 💙",
+            text: "You are caring, understanding and always ready to listen. Your friends know they can count on you when they need someone."
+        },
+
+        fun: {
+            title: "You Are the Fun Friend 🎉",
+            text: "You bring energy and laughter wherever you go. You love creating happy memories and making your friends smile."
+        },
+
+        loyal: {
+            title: "You Are the Loyal Friend 🤝",
+            text: "Trust and loyalty are very important to you. You stand by your friends and value strong, lasting friendships."
+        },
+
+        adventurous: {
+            title: "You Are the Adventurous Friend 🚀",
+            text: "You love trying new things and creating exciting experiences. Your friends can always expect something interesting when they are with you."
+        }
+
+    };
+
+    document.getElementById("result-title").textContent =
+        results[winner].title;
+
+    document.getElementById("result-text").textContent =
+        results[winner].text;
+
+}
+
+function restartQuiz() {
+
+    currentQuestion = 0;
+
+    scores = {
+        supportive: 0,
+        fun: 0,
+        loyal: 0,
+        adventurous: 0
+    };
+
+    document.getElementById("quiz").style.display = "block";
+
+    document.getElementById("result").style.display = "none";
+
+    showQuestion();
+
+}
+
+showQuestion();
+
+</script>
+
+</body>
+</html>
+```
