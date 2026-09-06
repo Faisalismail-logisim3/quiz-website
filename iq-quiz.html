@@ -19,13 +19,13 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background: #f5f3ff;
-            color: #222;
+            color: #222222;
         }
 
         header {
             background: #7c3aed;
-            color: white;
-            padding: 20px;
+            color: #ffffff;
+            padding: 22px;
             text-align: center;
         }
 
@@ -41,7 +41,7 @@
         }
 
         .box {
-            background: white;
+            background: #ffffff;
             padding: 30px;
             border-radius: 18px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
@@ -53,96 +53,133 @@
 
         h2 {
             color: #7c3aed;
+            margin-top: 0;
         }
 
-        .question-number {
-            color: #666;
+        .intro p {
+            color: #444444;
+            line-height: 1.6;
+        }
+
+        .note {
             font-size: 14px;
-            margin-bottom: 10px;
+            color: #666666 !important;
+            margin-top: 20px;
         }
 
-        .question {
-            font-size: 21px;
-            font-weight: bold;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-
-        .answer {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            margin: 12px 0;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            background: white;
-            cursor: pointer;
-            text-align: left;
-            font-size: 16px;
-            transition: 0.2s;
-        }
-
-        .answer:hover {
-            border-color: #7c3aed;
-            background: #f5f3ff;
-        }
-
-        button.start,
-        button.restart {
-            border: none;
-            border-radius: 10px;
-            padding: 14px 22px;
+        .start-btn,
+        .restart-btn {
             background: #7c3aed;
-            color: white;
+            color: #ffffff;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 10px;
             font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
         }
 
-        button.start:hover,
-        button.restart:hover {
+        .start-btn:hover,
+        .restart-btn:hover {
             background: #6d28d9;
         }
 
         .hidden {
-            display: none;
+            display: none !important;
         }
 
-        .progress {
-            height: 8px;
+        .progress-container {
+            width: 100%;
+            height: 10px;
             background: #e5e7eb;
             border-radius: 10px;
-            margin-bottom: 25px;
             overflow: hidden;
+            margin-bottom: 25px;
         }
 
         .progress-bar {
             height: 100%;
             width: 0%;
             background: #7c3aed;
-            transition: width 0.3s;
+            transition: width 0.3s ease;
+        }
+
+        .question-number {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .question {
+            font-size: 21px;
+            font-weight: bold;
+            color: #222222;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        /* ANSWERS */
+        .answer {
+            display: block;
+            width: 100%;
+            padding: 16px 18px;
+            margin: 12px 0;
+
+            background: #ffffff;
+            color: #222222;
+
+            border: 2px solid #7c3aed;
+            border-radius: 12px;
+
+            font-size: 17px;
+            font-weight: 600;
+            text-align: left;
+
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .answer:hover {
+            background: #f5f3ff;
+            color: #6d28d9;
+            border-color: #6d28d9;
+            transform: translateY(-1px);
+        }
+
+        .answer:active {
+            transform: scale(0.98);
         }
 
         .result {
             text-align: center;
         }
 
+        .result h2 {
+            margin-bottom: 20px;
+        }
+
         .score {
-            font-size: 28px;
+            font-size: 30px;
             font-weight: bold;
+            color: #7c3aed;
             margin: 20px 0;
         }
 
         .result-title {
             font-size: 22px;
+            font-weight: bold;
+            color: #222222;
             margin: 15px 0;
         }
 
         .result-text {
-            color: #555;
-            line-height: 1.6;
+            color: #444444;
+            line-height: 1.7;
+            margin-bottom: 25px;
         }
 
-        .back {
+        .back-link {
             display: inline-block;
             margin-top: 20px;
             color: #7c3aed;
@@ -150,13 +187,12 @@
             font-weight: bold;
         }
 
-        .note {
-            font-size: 14px;
-            color: #666;
-            margin-top: 20px;
+        .back-link:hover {
+            text-decoration: underline;
         }
 
         @media (max-width: 600px) {
+
             .container {
                 margin: 20px auto;
                 padding: 15px;
@@ -168,6 +204,11 @@
 
             .question {
                 font-size: 18px;
+            }
+
+            .answer {
+                font-size: 16px;
+                padding: 15px;
             }
         }
     </style>
@@ -191,7 +232,7 @@
             with this quick and fun quiz!
         </p>
 
-        <button class="start" onclick="startQuiz()">
+        <button class="start-btn" onclick="startQuiz()">
             Start IQ Quiz
         </button>
 
@@ -205,7 +246,7 @@
     <!-- QUIZ -->
     <div id="quiz" class="box hidden">
 
-        <div class="progress">
+        <div class="progress-container">
             <div id="progressBar" class="progress-bar"></div>
         </div>
 
@@ -229,13 +270,13 @@
 
         <p id="resultText" class="result-text"></p>
 
-        <button class="restart" onclick="restartQuiz()">
+        <button class="restart-btn" onclick="restartQuiz()">
             🔄 Take Quiz Again
         </button>
 
         <br>
 
-        <a class="back" href="index.html">
+        <a href="index.html" class="back-link">
             ← Back to QuizNest
         </a>
 
@@ -249,19 +290,29 @@
 const questions = [
 
     {
-        question: "1. What number comes next? 4, 8, 12, ?",
-        answers: ["14", "16", "18", "20"],
+        question: "What number comes next? 4, 8, 12, ?",
+        answers: [
+            "14",
+            "16",
+            "18",
+            "20"
+        ],
         correct: 1
     },
 
     {
-        question: "2. Which one is different from the others?",
-        answers: ["Apple", "Banana", "Carrot", "Orange"],
+        question: "Which one is different from the others?",
+        answers: [
+            "Apple",
+            "Banana",
+            "Carrot",
+            "Orange"
+        ],
         correct: 2
     },
 
     {
-        question: "3. If all cats are animals and some animals are black, what can we say?",
+        question: "If all cats are animals and some animals are black, what can we say?",
         answers: [
             "All cats are black",
             "Some animals may be black",
@@ -272,20 +323,35 @@ const questions = [
     },
 
     {
-        question: "4. What comes next? 2, 4, 8, 16, ?",
-        answers: ["20", "24", "32", "36"],
+        question: "What comes next? 2, 4, 8, 16, ?",
+        answers: [
+            "20",
+            "24",
+            "32",
+            "36"
+        ],
         correct: 2
     },
 
     {
-        question: "5. Which shape has 3 sides?",
-        answers: ["Triangle", "Square", "Circle", "Rectangle"],
+        question: "Which shape has 3 sides?",
+        answers: [
+            "Triangle",
+            "Square",
+            "Circle",
+            "Rectangle"
+        ],
         correct: 0
     },
 
     {
-        question: "6. If you have 3 apples and get 2 more, how many apples do you have?",
-        answers: ["4", "5", "6", "7"],
+        question: "If you have 3 apples and get 2 more, how many apples do you have?",
+        answers: [
+            "4",
+            "5",
+            "6",
+            "7"
+        ],
         correct: 1
     }
 
@@ -294,15 +360,19 @@ const questions = [
 
 let currentQuestion = 0;
 let score = 0;
+let answered = false;
 
 
 function startQuiz() {
 
     currentQuestion = 0;
     score = 0;
+    answered = false;
 
     document.getElementById("intro").classList.add("hidden");
+
     document.getElementById("result").classList.add("hidden");
+
     document.getElementById("quiz").classList.remove("hidden");
 
     showQuestion();
@@ -311,84 +381,109 @@ function startQuiz() {
 
 function showQuestion() {
 
-    const question = questions[currentQuestion];
+    answered = false;
+
+    const questionData = questions[currentQuestion];
 
     document.getElementById("questionNumber").textContent =
         "Question " + (currentQuestion + 1) + " of " + questions.length;
 
     document.getElementById("question").textContent =
-        question.question;
+        questionData.question;
 
-    const answersContainer =
-        document.getElementById("answers");
 
-    answersContainer.innerHTML = "";
+    const answersBox = document.getElementById("answers");
 
-    question.answers.forEach((answer, index) => {
+    answersBox.innerHTML = "";
+
+
+    questionData.answers.forEach(function(answerText, index) {
 
         const button = document.createElement("button");
 
+        button.type = "button";
+
         button.className = "answer";
 
-        button.textContent = answer;
+        button.textContent = answerText;
 
-        button.onclick = function() {
+        button.addEventListener("click", function() {
             selectAnswer(index);
-        };
+        });
 
-        answersContainer.appendChild(button);
+        answersBox.appendChild(button);
 
     });
 
 
     const progress =
-        ((currentQuestion) / questions.length) * 100;
+        (currentQuestion / questions.length) * 100;
 
     document.getElementById("progressBar").style.width =
         progress + "%";
 }
 
 
-function selectAnswer(selectedAnswer) {
+function selectAnswer(selectedIndex) {
 
-    const correctAnswer =
+    if (answered) {
+        return;
+    }
+
+    answered = true;
+
+
+    const correctIndex =
         questions[currentQuestion].correct;
 
-    if (selectedAnswer === correctAnswer) {
+
+    if (selectedIndex === correctIndex) {
         score++;
     }
 
-    currentQuestion++;
 
-    if (currentQuestion < questions.length) {
+    const buttons =
+        document.querySelectorAll(".answer");
 
-        setTimeout(function() {
+    buttons.forEach(function(button) {
+        button.disabled = true;
+    });
+
+
+    setTimeout(function() {
+
+        currentQuestion++;
+
+
+        if (currentQuestion < questions.length) {
+
             showQuestion();
-        }, 200);
 
-    } else {
+        } else {
 
-        setTimeout(function() {
             showResult();
-        }, 200);
 
-    }
+        }
+
+    }, 300);
 }
 
 
 function showResult() {
 
     document.getElementById("quiz").classList.add("hidden");
+
     document.getElementById("result").classList.remove("hidden");
 
     document.getElementById("progressBar").style.width = "100%";
+
 
     document.getElementById("score").textContent =
         "Your Score: " + score + " / " + questions.length;
 
 
-    let title = "";
-    let text = "";
+    let title;
+    let text;
 
 
     if (score >= 5) {
@@ -438,14 +533,17 @@ function showResult() {
 
 function restartQuiz() {
 
-    document.getElementById("result").classList.add("hidden");
-
-    document.getElementById("intro").classList.remove("hidden");
-
     currentQuestion = 0;
 
     score = 0;
 
+    answered = false;
+
+    document.getElementById("result").classList.add("hidden");
+
+    document.getElementById("intro").classList.remove("hidden");
+
+    document.getElementById("progressBar").style.width = "0%";
 }
 
 </script>
