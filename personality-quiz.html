@@ -6,7 +6,7 @@
 
     <title>Personality Quiz - Discover Your Personality Type | QuizNest</title>
 
-    <meta name="description" content="Take the free QuizNest personality quiz and discover your personality type with fun questions.">
+    <meta name="description" content="Take our free personality quiz and discover whether you are social, creative, calm or ambitious.">
 
     <meta name="robots" content="index, follow">
 
@@ -21,7 +21,7 @@
             padding: 30px;
             background: white;
             border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
 
         .question {
@@ -30,40 +30,33 @@
             margin-bottom: 25px;
         }
 
-        .answer {
+        .answer-btn {
             display: block;
             width: 100%;
             padding: 15px;
             margin: 12px 0;
             border: 1px solid #ddd;
             border-radius: 10px;
-            background: #f8f8f8;
+            background: #f7f7f7;
             cursor: pointer;
             font-size: 16px;
-            text-align: left;
         }
 
-        .answer:hover {
+        .answer-btn:hover {
             background: #eee;
         }
 
-        .progress {
-            margin-bottom: 20px;
-            color: #666;
-        }
-
-        .result {
+        #result {
+            display: none;
             text-align: center;
         }
 
-        .result h3 {
-            font-size: 28px;
-        }
-
-        .restart {
+        .restart-btn {
             padding: 12px 25px;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
+            background: #7c3aed;
+            color: white;
             cursor: pointer;
             font-size: 16px;
         }
@@ -85,15 +78,31 @@
 
         <div id="quiz">
 
-            <div class="progress" id="progress"></div>
+            <h2>Personality Quiz</h2>
 
-            <div class="question" id="question"></div>
+            <p>
+                Answer these questions and discover your personality type.
+            </p>
+
+            <div id="question"></div>
 
             <div id="answers"></div>
 
         </div>
 
-        <div id="result" class="result" style="display:none;"></div>
+        <div id="result">
+
+            <h2>Your Personality Result 🎉</h2>
+
+            <h3 id="result-title"></h3>
+
+            <p id="result-text"></p>
+
+            <button class="restart-btn" onclick="restartQuiz()">
+                Take Quiz Again
+            </button>
+
+        </div>
 
     </div>
 
@@ -104,62 +113,62 @@
 const questions = [
 
     {
-        question: "How do you usually spend your free time?",
+        question: "What do you usually do at a party?",
         answers: [
-            ["Going out and meeting people", "social"],
-            ["Creating something or doing art", "creative"],
-            ["Relaxing quietly at home", "calm"],
-            ["Working on my goals", "ambitious"]
+            { text: "Talk to everyone", type: "social" },
+            { text: "Enjoy creative activities", type: "creative" },
+            { text: "Stay relaxed and observe", type: "calm" },
+            { text: "Meet people who can help my goals", type: "ambitious" }
+        ]
+    },
+
+    {
+        question: "Which activity do you enjoy most?",
+        answers: [
+            { text: "Hanging out with friends", type: "social" },
+            { text: "Drawing, writing or creating", type: "creative" },
+            { text: "Reading or relaxing", type: "calm" },
+            { text: "Learning skills and achieving goals", type: "ambitious" }
+        ]
+    },
+
+    {
+        question: "How do you solve problems?",
+        answers: [
+            { text: "Ask other people for ideas", type: "social" },
+            { text: "Think of unusual solutions", type: "creative" },
+            { text: "Stay calm and think carefully", type: "calm" },
+            { text: "Focus on the fastest way to succeed", type: "ambitious" }
         ]
     },
 
     {
         question: "What describes you best?",
         answers: [
-            ["Friendly and outgoing", "social"],
-            ["Imaginative and creative", "creative"],
-            ["Calm and peaceful", "calm"],
-            ["Focused and determined", "ambitious"]
+            { text: "Friendly and outgoing", type: "social" },
+            { text: "Imaginative and original", type: "creative" },
+            { text: "Peaceful and patient", type: "calm" },
+            { text: "Focused and determined", type: "ambitious" }
         ]
     },
 
     {
-        question: "When you meet new people, you usually...",
+        question: "What motivates you?",
         answers: [
-            ["Start conversations easily", "social"],
-            ["Talk about interesting ideas", "creative"],
-            ["Listen more than I talk", "calm"],
-            ["Think about useful connections", "ambitious"]
+            { text: "Friends and relationships", type: "social" },
+            { text: "New ideas", type: "creative" },
+            { text: "Peace and balance", type: "calm" },
+            { text: "Success and achievement", type: "ambitious" }
         ]
     },
 
     {
-        question: "What motivates you the most?",
+        question: "What would your friends say about you?",
         answers: [
-            ["Being around people", "social"],
-            ["Expressing myself", "creative"],
-            ["Having peace and balance", "calm"],
-            ["Achieving success", "ambitious"]
-        ]
-    },
-
-    {
-        question: "How do you handle problems?",
-        answers: [
-            ["Talk to someone about them", "social"],
-            ["Think of a new creative solution", "creative"],
-            ["Stay calm and think carefully", "calm"],
-            ["Take action immediately", "ambitious"]
-        ]
-    },
-
-    {
-        question: "Which sounds most like your personality?",
-        answers: [
-            ["I love meeting and helping people", "social"],
-            ["I love ideas and creativity", "creative"],
-            ["I enjoy peace and quiet", "calm"],
-            ["I always want to improve and succeed", "ambitious"]
+            { text: "You are very social", type: "social" },
+            { text: "You are very creative", type: "creative" },
+            { text: "You are calm and patient", type: "calm" },
+            { text: "You are ambitious", type: "ambitious" }
         ]
     }
 
@@ -176,27 +185,28 @@ let scores = {
 
 function showQuestion() {
 
-    const q = questions[currentQuestion];
+    const question = questions[currentQuestion];
 
-    document.getElementById("progress").textContent =
-        "Question " + (currentQuestion + 1) + " of " + questions.length;
-
-    document.getElementById("question").textContent = q.question;
+    document.getElementById("question").innerHTML =
+        `<div class="question">
+            Question ${currentQuestion + 1} of ${questions.length}<br><br>
+            ${question.question}
+        </div>`;
 
     const answersDiv = document.getElementById("answers");
 
     answersDiv.innerHTML = "";
 
-    q.answers.forEach(function(answer) {
+    question.answers.forEach(answer => {
 
         const button = document.createElement("button");
 
-        button.className = "answer";
+        button.className = "answer-btn";
 
-        button.textContent = answer[0];
+        button.textContent = answer.text;
 
         button.onclick = function() {
-            selectAnswer(answer[1]);
+            selectAnswer(answer.type);
         };
 
         answersDiv.appendChild(button);
@@ -227,55 +237,47 @@ function showResult() {
 
     document.getElementById("quiz").style.display = "none";
 
-    const result = document.getElementById("result");
+    document.getElementById("result").style.display = "block";
 
-    result.style.display = "block";
+    let winner = "social";
 
-    let personality = Object.keys(scores).reduce(function(a, b) {
-        return scores[a] > scores[b] ? a : b;
-    });
+    for (let type in scores) {
+
+        if (scores[type] > scores[winner]) {
+            winner = type;
+        }
+
+    }
 
     const results = {
 
         social: {
-            title: "You are a Social Personality! 🥳",
-            text: "You are friendly, outgoing and enjoy connecting with other people. You bring positive energy wherever you go."
+            title: "You Are Social 🤝",
+            text: "You are friendly, outgoing and enjoy connecting with people. You feel comfortable in social situations and love spending time with others."
         },
 
         creative: {
-            title: "You are a Creative Personality! 🎨",
-            text: "You are imaginative, curious and love thinking of new ideas. Creativity is one of your strongest qualities."
+            title: "You Are Creative 🎨",
+            text: "You have a creative mind and enjoy new ideas. You like expressing yourself and thinking differently from others."
         },
 
         calm: {
-            title: "You are a Calm Personality! 🌿",
-            text: "You are peaceful, thoughtful and patient. You prefer balance and usually think carefully before making decisions."
+            title: "You Are Calm 🌿",
+            text: "You are peaceful, patient and thoughtful. You prefer balance and usually stay calm even when things become difficult."
         },
 
         ambitious: {
-            title: "You are an Ambitious Personality! 🚀",
-            text: "You are motivated, focused and determined. You set goals and work hard to achieve them."
+            title: "You Are Ambitious 🚀",
+            text: "You are focused, motivated and determined. You enjoy setting goals and working hard to achieve success."
         }
 
     };
 
-    result.innerHTML = `
-        <h2>Your Personality Result</h2>
+    document.getElementById("result-title").textContent =
+        results[winner].title;
 
-        <h3>${results[personality].title}</h3>
-
-        <p>${results[personality].text}</p>
-
-        <button class="restart" onclick="restartQuiz()">
-            🔄 Take Quiz Again
-        </button>
-
-        <br><br>
-
-        <a href="index.html">
-            ← Back to QuizNest
-        </a>
-    `;
+    document.getElementById("result-text").textContent =
+        results[winner].text;
 
 }
 
