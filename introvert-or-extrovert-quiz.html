@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Introvert or Extrovert Quiz | QuizNest</title>
+
+    <meta name="description" content="Take our free introvert or extrovert quiz and discover whether you are more introverted, extroverted or balanced.">
+
+    <link rel="canonical" href="https://faisalismail-logisim3.github.io/quiz-website/introvert-or-extrovert-quiz.html">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f3ff;
+            color: #333;
+        }
+
+        header {
+            background: #7c3aed;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .intro,
+        .quiz-box,
+        .result-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #7c3aed;
+        }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
+        .question h3 {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            padding: 13px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        label:hover {
+            background: #f3e8ff;
+        }
+
+        input {
+            margin-right: 10px;
+        }
+
+        button {
+            background: #7c3aed;
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #6d28d9;
+        }
+
+        .quiz-box,
+        .result-box {
+            display: none;
+        }
+
+        .result-box {
+            text-align: center;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            color: #7c3aed;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #dc2626;
+            display: none;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            .intro,
+            .quiz-box,
+            .result-box {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>QuizNest</h1>
+    <p>Fun quizzes to discover more about yourself</p>
+</header>
+
+<div class="container">
+
+    <div class="intro" id="intro">
+        <h2>🧠 Introvert or Extrovert?</h2>
+
+        <p>
+            Are you more comfortable around people or do you enjoy
+            spending time alone? Take this fun quiz and discover your style.
+        </p>
+
+        <button onclick="startQuiz()">
+            Start Quiz
+        </button>
+    </div>
+
+    <div class="quiz-box" id="quizBox">
+
+        <h2>🧠 Introvert or Extrovert Quiz</h2>
+
+        <p class="error" id="errorMessage">
+            Please answer all questions before seeing your result.
+        </p>
+
+        <form id="quizForm">
+
+            <div class="question">
+                <h3>1. What do you prefer on a free day?</h3>
+
+                <label>
+                    <input type="radio" name="q1" value="introvert">
+                    Relaxing at home by myself
+                </label>
+
+                <label>
+                    <input type="radio" name="q1" value="extrovert">
+                    Going out with friends
+                </label>
+
+                <label>
+                    <input type="radio" name="q1" value="balanced">
+                    A little of both
+                </label>
+            </div>
+
+            <div class="question">
+                <h3>2. How do you feel at a large party?</h3>
+
+                <label>
+                    <input type="radio" name="q2" value="introvert">
+                    I feel more comfortable staying quiet
+                </label>
+
+                <label>
+                    <input type="radio" name="q2" value="extrovert">
+                    I enjoy meeting lots of people
+                </label>
+
+                <label>
+                    <input type="radio" name="q2" value="balanced">
+                    I enjoy it for a while, then need some quiet time
+                </label>
+            </div>
+
+            <div class="question">
+                <h3>3. When you have a problem, what do you usually do?</h3>
+
+                <label>
+                    <input type="radio" name="q3" value="introvert">
+                    Think about it alone
+                </label>
+
+                <label>
+                    <input type="radio" name="q3" value="extrovert">
+                    Talk about it with someone
+                </label>
+
+                <label>
+                    <input type="radio" name="q3" value="balanced">
+                    Think first and then ask someone
+                </label>
+            </div>
+
+            <div class="question">
+                <h3>4. Which environment do you prefer?</h3>
+
+                <label>
+                    <input type="radio" name="q4" value="introvert">
+                    A quiet environment
+                </label>
+
+                <label>
+                    <input type="radio" name="q4" value="extrovert">
+                    A lively and social environment
+                </label>
+
+                <label>
+                    <input type="radio" name="q4" value="balanced">
+                    It depends on my mood
+                </label>
+            </div>
+
+            <div class="question">
+                <h3>5. How do you feel after spending time with many people?</h3>
+
+                <label>
+                    <input type="radio" name="q5" value="introvert">
+                    I usually need alone time
+                </label>
+
+                <label>
+                    <input type="radio" name="q5" value="extrovert">
+                    I feel energized
+                </label>
+
+                <label>
+                    <input type="radio" name="q5" value="balanced">
+                    Sometimes energized, sometimes tired
+                </label>
+            </div>
+
+            <div class="question">
+                <h3>6. What sounds more enjoyable?</h3>
+
+                <label>
+                    <input type="radio" name="q6" value="introvert">
+                    Reading, watching a movie or relaxing
+                </label>
+
+                <label>
+                    <input type="radio" name="q6" value="extrovert">
+                    Going out and doing something exciting
+                </label>
+
+                <label>
+                    <input type="radio" name="q6" value="balanced">
+                    Both depending on the day
+                </label>
+            </div>
+
+            <button type="button" onclick="showResult()">
+                See My Result 🧠
+            </button>
+
+        </form>
+    </div>
+
+    <div class="result-box" id="resultBox">
+
+        <h2>🧠 Your Result</h2>
+
+        <h3 id="resultTitle"></h3>
+
+        <p id="resultDescription"></p>
+
+        <button onclick="restartQuiz()">
+            🔄 Take Quiz Again
+        </button>
+
+        <br>
+
+        <a class="back" href="index.html">
+            ← Back to QuizNest
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+function startQuiz() {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("quizBox").style.display = "block";
+    document.getElementById("resultBox").style.display = "none";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function showResult() {
+
+    const questions = ["q1", "q2", "q3", "q4", "q5", "q6"];
+
+    const scores = {
+        introvert: 0,
+        extrovert: 0,
+        balanced: 0
+    };
+
+    for (let question of questions) {
+
+        const answer = document.querySelector(
+            'input[name="' + question + '"]:checked'
+        );
+
+        if (!answer) {
+            document.getElementById("errorMessage").style.display = "block";
+            return;
+        }
+
+        scores[answer.value]++;
+    }
+
+    document.getElementById("errorMessage").style.display = "none";
+
+    let resultType = "balanced";
+
+    if (
+        scores.introvert > scores.extrovert &&
+        scores.introvert > scores.balanced
+    ) {
+        resultType = "introvert";
+    } else if (
+        scores.extrovert > scores.introvert &&
+        scores.extrovert > scores.balanced
+    ) {
+        resultType = "extrovert";
+    }
+
+    const results = {
+
+        introvert: {
+            title: "You Are More Introverted 🌿",
+            description:
+                "You enjoy quiet environments, personal space and meaningful one-on-one conversations. Spending time alone can help you relax and recharge."
+        },
+
+        extrovert: {
+            title: "You Are More Extroverted 🎉",
+            description:
+                "You enjoy social situations, meeting people and sharing experiences. Being around others can give you energy and excitement."
+        },
+
+        balanced: {
+            title: "You Are a Balanced Personality ⚖️",
+            description:
+                "You seem comfortable with both social situations and quiet time. You can enjoy being around people while also appreciating your personal space."
+        }
+
+    };
+
+    document.getElementById("resultTitle").textContent =
+        results[resultType].title;
+
+    document.getElementById("resultDescription").textContent =
+        results[resultType].description;
+
+    document.getElementById("quizBox").style.display = "none";
+    document.getElementById("resultBox").style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function restartQuiz() {
+
+    document.getElementById("quizForm").reset();
+
+    document.getElementById("resultBox").style.display = "none";
+    document.getElementById("quizBox").style.display = "none";
+    document.getElementById("intro").style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+</script>
+
+</body>
+</html>
