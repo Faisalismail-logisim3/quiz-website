@@ -1,6 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://faisalismail-logisim3.github.io/quiz-website/</loc>
-  </url>
+
+    <url>
+        <loc>https://faisalismail-logisim3.github.io/quiz-website/</loc>
+    </url>
+
+    <url>
+        <loc>https://faisalismail-logisim3.github.io/quiz-website/personality-quiz.html</loc>
+    </url>
+
+    <url>
+        <loc>https://faisalismail-logisim3.github.io/quiz-website/friendship-quiz.html</loc>
+    </url>
+
+    <url>
+        <loc>https://faisalismail-logisim3.github.io/quiz-website/career-quiz.html</loc>
+    </url>
+
+    <url>
+        <loc>https://faisalismail-logisim3.github.io/quiz-website/love-quiz.html</loc>
+    </url>
+
+    <url>
+        <loc>https://faisalismail-logisim3.github.io/quiz-website/introvert-or-extrovert-quiz.html</loc>
+    </url>
+
+    <url>
+        <loc>https://faisalismail-logisim3.github.io/quiz-website/iq-quiz.html</loc>
+    </url>
+
+    <url>
+        <loc>https://faisalismail-logisim3.github.io/quiz-website/privacy.html</loc>
+    </url>
+
+    <url>
+        <loc>https://faisalismail-logisim3.github.io/quiz-website/terms.html</loc>
+    </url>
+
+    <url>
+        <loc>https://faisalismail-logisim3.github.io/quiz-website/contact.html</loc>
+    </url>
+
 </urlset>
