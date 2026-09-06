@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Love Quiz - What Is Your Love Style? | QuizNest</title>
+
+    <meta name="description" content="Take our free love quiz and discover your love style. Find out if you are romantic, caring, playful or independent.">
+
+    <link rel="canonical" href="https://faisalismail-logisim3.github.io/quiz-website/love-quiz.html">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f3ff;
+            color: #333;
+        }
+
+        header {
+            background: #7c3aed;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 25px;
+        }
+
+        .intro,
+        .quiz-box,
+        .result-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #7c3aed;
+        }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
+        .question h3 {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            padding: 13px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        label:hover {
+            background: #f3e8ff;
+        }
+
+        input {
+            margin-right: 10px;
+        }
+
+        button {
+            background: #7c3aed;
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #6d28d9;
+        }
+
+        .result-box {
+            display: none;
+            text-align: center;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            color: #7c3aed;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #dc2626;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            .intro,
+            .quiz-box,
+            .result-box {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>QuizNest</h1>
+    <p>Fun quizzes to discover more about yourself</p>
+</header>
+
+<div class="container">
+
+    <div class="intro">
+        <h2>💕 What Is Your Love Style?</h2>
+
+        <p>
+            Take this fun love quiz and discover your relationship style.
+            Are you romantic, caring, playful or independent?
+        </p>
+
+        <button onclick="startQuiz()">Start Love Quiz</button>
+    </div>
+
+    <div class="quiz-box" id="quizBox" style="display:none;">
+
+        <h2>💕 Love Style Quiz</h2>
+
+        <p id="errorMessage" class="error">
+            Please answer all questions before seeing your result.
+        </p>
+
+        <form id="quizForm">
+
+            <div class="question">
+                <h3>1. What do you enjoy most in a relationship?</h3>
+
+                <label>
+                    <input type="radio" name="q1" value="romantic">
+                    Romantic dates and surprises
+                </label>
+
+                <label>
+                    <input type="radio" name="q1" value="caring">
+                    Supporting and helping each other
+                </label>
+
+                <label>
+                    <input type="radio" name="q1" value="playful">
+                    Laughing and having fun together
+                </label>
+
+                <label>
+                    <input type="radio" name="q1" value="independent">
+                    Having love while keeping personal space
+                </label>
+            </div>
+
+            <div class="question">
+                <h3>2. How do you usually show someone you care?</h3>
+
+                <label>
+                    <input type="radio" name="q2" value="romantic">
+                    I give thoughtful gifts or surprises
+                </label>
+
+                <label>
+                    <input type="radio" name="q2" value="caring">
+                    I listen and help when they need me
+                </label>
+
+                <label>
+                    <input type="radio" name="q2" value="playful">
+                    I make them laugh
+                </label>
+
+                <label>
+                    <input type="radio" name="q2" value="independent">
+                    I respect their freedom and choices
+                </label>
+            </div>
+
+            <div class="question">
+                <h3>3. What would be your ideal date?</h3>
+
+                <label>
+                    <input type="radio" name="q3" value="romantic">
+                    A candlelit dinner
+                </label>
+
+                <label>
+                    <input type="radio" name="q3" value="caring">
+                    A quiet day together talking
+                </label>
+
+                <label>
+                    <input type="radio" name="q3" value="playful">
+                    An exciting adventure
+                </label>
+
+                <label>
+                    <input type="radio" name="q3" value="independent">
+                    Doing something we both enjoy separately
+                </label>
+            </div>
+
+            <div class="question">
+                <h3>4. What matters most to you in love?</h3>
+
+                <label>
+                    <input type="radio" name="q4" value="romantic">
+                    Romance and affection
+                </label>
+
+                <label>
+                    <input type="radio" name="q4" value="caring">
+                    Trust and emotional support
+                </label>
+
+                <label>
+                    <input type="radio" name="q4" value="playful">
+                    Fun and excitement
+                </label>
+
+                <label>
+                    <input type="radio" name="q4" value="independent">
+                    Freedom and individuality
+                </label>
+            </div>
+
+            <div class="question">
+                <h3>5. How would your partner describe you?</h3>
+
+                <label>
+                    <input type="radio" name="q5" value="romantic">
+                    Sweet and romantic
+                </label>
+
+                <label>
+                    <input type="radio" name="q5" value="caring">
+                    Caring and dependable
+                </label>
+
+                <label>
+                    <input type="radio" name="q5" value="playful">
+                    Funny and energetic
+                </label>
+
+                <label>
+                    <input type="radio" name="q5" value="independent">
+                    Independent and confident
+                </label>
+            </div>
+
+            <div class="question">
+                <h3>6. What makes a relationship strong?</h3>
+
+                <label>
+                    <input type="radio" name="q6" value="romantic">
+                    Keeping the romance alive
+                </label>
+
+                <label>
+                    <input type="radio" name="q6" value="caring">
+                    Being there for each other
+                </label>
+
+                <label>
+                    <input type="radio" name="q6" value="playful">
+                    Sharing fun experiences
+                </label>
+
+                <label>
+                    <input type="radio" name="q6" value="independent">
+                    Respecting each other's independence
+                </label>
+            </div>
+
+            <button type="button" onclick="showResult()">
+                See My Love Style 💕
+            </button>
+
+        </form>
+    </div>
+
+    <div class="result-box" id="resultBox">
+
+        <h2>💕 Your Love Result</h2>
+
+        <h3 id="resultTitle"></h3>
+
+        <p id="resultDescription"></p>
+
+        <button onclick="restartQuiz()">
+            🔄 Take Quiz Again
+        </button>
+
+        <br>
+
+        <a class="back" href="index.html">
+            ← Back to QuizNest
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+function startQuiz() {
+    document.querySelector(".intro").style.display = "none";
+    document.getElementById("quizBox").style.display = "block";
+    document.getElementById("resultBox").style.display = "none";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function showResult() {
+
+    const questions = ["q1", "q2", "q3", "q4", "q5", "q6"];
+
+    const scores = {
+        romantic: 0,
+        caring: 0,
+        playful: 0,
+        independent: 0
+    };
+
+    for (let question of questions) {
+
+        const answer = document.querySelector(
+            'input[name="' + question + '"]:checked'
+        );
+
+        if (!answer) {
+            document.getElementById("errorMessage").style.display = "block";
+            return;
+        }
+
+        scores[answer.value]++;
+    }
+
+    document.getElementById("errorMessage").style.display = "none";
+
+    let resultType = "romantic";
+
+    for (let type in scores) {
+        if (scores[type] > scores[resultType]) {
+            resultType = type;
+        }
+    }
+
+    const results = {
+
+        romantic: {
+            title: "You Have a Romantic Love Style 💕",
+            description:
+                "You love affection, thoughtful gestures and meaningful romantic moments. You enjoy keeping the spark alive in a relationship."
+        },
+
+        caring: {
+            title: "You Have a Caring Love Style 💙",
+            description:
+                "You are supportive, understanding and emotionally caring. You value trust, communication and being there for the person you love."
+        },
+
+        playful: {
+            title: "You Have a Playful Love Style 🎉",
+            description:
+                "You bring fun, laughter and excitement into relationships. You enjoy creating happy memories and keeping things energetic."
+        },
+
+        independent: {
+            title: "You Have an Independent Love Style 🌿",
+            description:
+                "You value love while also appreciating personal freedom and individuality. You believe healthy relationships allow both people to be themselves."
+        }
+
+    };
+
+    document.getElementById("resultTitle").textContent =
+        results[resultType].title;
+
+    document.getElementById("resultDescription").textContent =
+        results[resultType].description;
+
+    document.getElementById("quizBox").style.display = "none";
+    document.getElementById("resultBox").style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function restartQuiz() {
+
+    document.getElementById("quizForm").reset();
+
+    document.getElementById("resultBox").style.display = "none";
+
+    document.querySelector(".intro").style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+</script>
+
+</body>
+</html>
