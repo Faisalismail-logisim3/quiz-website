@@ -1,0 +1,321 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IQ Quiz - Fun IQ Challenge | QuizNest</title>
+
+    <meta name="description" content="Take our free fun IQ quiz and test your logic, patterns, memory and problem-solving skills.">
+
+    <link rel="canonical" href="https://faisalismail-logisim3.github.io/quiz-website/iq-quiz.html">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f3ff;
+            color: #222;
+        }
+
+        header {
+            background: #7c3aed;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .intro,
+        .quiz-box,
+        .result {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .intro {
+            text-align: center;
+        }
+
+        h2 {
+            color: #7c3aed;
+        }
+
+        .question {
+            margin-bottom: 25px;
+        }
+
+        .question h3 {
+            margin-bottom: 15px;
+        }
+
+        .answer {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        .answer:hover {
+            border-color: #7c3aed;
+            background: #f5f3ff;
+        }
+
+        button {
+            border: none;
+            border-radius: 10px;
+            padding: 14px 22px;
+            background: #7c3aed;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #6d28d9;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .result {
+            text-align: center;
+        }
+
+        .score {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            color: #7c3aed;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .note {
+            font-size: 14px;
+            color: #666;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🧠 QuizNest</h1>
+</header>
+
+<div class="container">
+
+    <div id="intro" class="intro">
+        <h2>🧠 Fun IQ Challenge</h2>
+
+        <p>
+            Test your logic, patterns and problem-solving skills
+            with this quick and fun quiz!
+        </p>
+
+        <button onclick="startQuiz()">Start IQ Quiz</button>
+
+        <p class="note">
+            This is a fun quiz and is not a scientifically validated IQ test.
+        </p>
+    </div>
+
+    <div id="quiz" class="quiz-box hidden">
+
+        <div class="question">
+            <h3>1. What number comes next?</h3>
+
+            <button class="answer" onclick="answer(1, false)">12</button>
+            <button class="answer" onclick="answer(1, true)">16</button>
+            <button class="answer" onclick="answer(1, false)">18</button>
+            <button class="answer" onclick="answer(1, false)">20</button>
+        </div>
+
+        <div class="question">
+            <h3>2. Which one is different from the others?</h3>
+
+            <button class="answer" onclick="answer(2, false)">Apple</button>
+            <button class="answer" onclick="answer(2, false)">Banana</button>
+            <button class="answer" onclick="answer(2, true)">Carrot</button>
+            <button class="answer" onclick="answer(2, false)">Orange</button>
+        </div>
+
+        <div class="question">
+            <h3>3. If all cats are animals and some animals are black, what can we say?</h3>
+
+            <button class="answer" onclick="answer(3, false)">All cats are black</button>
+            <button class="answer" onclick="answer(3, true)">Some animals may be black</button>
+            <button class="answer" onclick="answer(3, false)">No cats are animals</button>
+            <button class="answer" onclick="answer(3, false)">All animals are cats</button>
+        </div>
+
+        <div class="question">
+            <h3>4. What comes next? 2, 4, 8, 16, ?</h3>
+
+            <button class="answer" onclick="answer(4, false)">20</button>
+            <button class="answer" onclick="answer(4, false)">24</button>
+            <button class="answer" onclick="answer(4, true)">32</button>
+            <button class="answer" onclick="answer(4, false)">36</button>
+        </div>
+
+        <div class="question">
+            <h3>5. Which shape has 3 sides?</h3>
+
+            <button class="answer" onclick="answer(5, true)">Triangle</button>
+            <button class="answer" onclick="answer(5, false)">Square</button>
+            <button class="answer" onclick="answer(5, false)">Circle</button>
+            <button class="answer" onclick="answer(5, false)">Rectangle</button>
+        </div>
+
+        <div class="question">
+            <h3>6. If you have 3 apples and get 2 more, how many apples do you have?</h3>
+
+            <button class="answer" onclick="answer(6, false)">4</button>
+            <button class="answer" onclick="answer(6, true)">5</button>
+            <button class="answer" onclick="answer(6, false)">6</button>
+            <button class="answer" onclick="answer(6, false)">7</button>
+        </div>
+
+    </div>
+
+    <div id="result" class="result hidden">
+
+        <h2>🧠 Your IQ Quiz Result</h2>
+
+        <div id="score" class="score"></div>
+
+        <h3 id="resultTitle"></h3>
+
+        <p id="resultText"></p>
+
+        <button onclick="restartQuiz()">🔄 Take Quiz Again</button>
+
+        <br>
+
+        <a class="back" href="index.html">← Back to QuizNest</a>
+
+    </div>
+
+</div>
+
+<script>
+
+let score = 0;
+let answered = [];
+
+function startQuiz() {
+
+    score = 0;
+    answered = [];
+
+    document.getElementById("intro").classList.add("hidden");
+    document.getElementById("result").classList.add("hidden");
+    document.getElementById("quiz").classList.remove("hidden");
+}
+
+function answer(questionNumber, correct) {
+
+    if (answered.includes(questionNumber)) {
+        return;
+    }
+
+    answered.push(questionNumber);
+
+    if (correct) {
+        score++;
+    }
+
+    if (answered.length === 6) {
+        setTimeout(showResult, 300);
+    }
+}
+
+function showResult() {
+
+    document.getElementById("quiz").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+
+    document.getElementById("score").textContent =
+        "Your Score: " + score + " / 6";
+
+    let title = "";
+    let text = "";
+
+    if (score >= 5) {
+
+        title = "Excellent Logical Thinking! 🧠🔥";
+
+        text =
+            "Great job! You showed strong logical thinking, pattern recognition and problem-solving skills.";
+
+    } else if (score >= 3) {
+
+        title = "Strong Problem-Solving Skills! 💪";
+
+        text =
+            "Nice work! You have good logical thinking and problem-solving ability.";
+
+    } else if (score >= 1) {
+
+        title = "Good Start! 🌟";
+
+        text =
+            "You have a good starting point. Keep practicing puzzles and logic challenges to improve.";
+
+    } else {
+
+        title = "Keep Practicing! 💪";
+
+        text =
+            "Don't worry! Try the quiz again and keep practicing logic and problem-solving questions.";
+    }
+
+    document.getElementById("resultTitle").textContent = title;
+    document.getElementById("resultText").textContent = text;
+}
+
+function restartQuiz() {
+
+    document.getElementById("result").classList.add("hidden");
+    document.getElementById("intro").classList.remove("hidden");
+
+    score = 0;
+    answered = [];
+}
+
+</script>
+
+</body>
+</html>
+```
