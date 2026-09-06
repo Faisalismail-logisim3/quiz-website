@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Career Quiz - What Career Suits You? | QuizNest</title>
+
+    <meta name="description" content="Take our free career quiz and discover what type of career may suit your personality, strengths and interests.">
+
+    <link rel="canonical" href="https://faisalismail-logisim3.github.io/quiz-website/career-quiz.html">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+            color: #222;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #7c3aed;
+            color: white;
+            padding: 22px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 700px;
+            margin: 35px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .intro {
+            text-align: center;
+        }
+
+        .intro h2 {
+            font-size: 27px;
+            color: #6d28d9;
+        }
+
+        .intro p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        button {
+            border: none;
+            background: #7c3aed;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #6d28d9;
+        }
+
+        .question-number {
+            color: #7c3aed;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            font-size: 23px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .answers {
+            display: grid;
+            gap: 12px;
+        }
+
+        .answer {
+            background: #f5f3ff;
+            color: #333;
+            border: 2px solid #ddd6fe;
+            text-align: left;
+            width: 100%;
+            margin: 0;
+        }
+
+        .answer:hover {
+            background: #ede9fe;
+            border-color: #7c3aed;
+        }
+
+        .result {
+            text-align: center;
+        }
+
+        .result h2 {
+            color: #6d28d9;
+            font-size: 28px;
+        }
+
+        .result p {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #7c3aed;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 22px;
+            }
+
+            header h1 {
+                font-size: 25px;
+            }
+
+            .question {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>QuizNest</h1>
+    <p>Fun quizzes to discover more about yourself</p>
+</header>
+
+<div class="container">
+
+    <div class="card intro" id="intro">
+        <h2>🎯 What Career Suits You?</h2>
+
+        <p>
+            Not sure what type of career matches your personality?
+            Take this fun career quiz and discover whether you may be
+            suited for a creative, helping, leadership, or analytical career.
+        </p>
+
+        <button onclick="startQuiz()">Start Career Quiz</button>
+    </div>
+
+    <div class="card hidden" id="quiz">
+        <div class="question-number" id="questionNumber"></div>
+        <div class="question" id="question"></div>
+
+        <div class="answers" id="answers"></div>
+    </div>
+
+    <div class="card result hidden" id="result">
+        <h2>🎯 Your Career Result</h2>
+
+        <h3 id="resultTitle"></h3>
+
+        <p id="resultText"></p>
+
+        <button onclick="restartQuiz()">🔄 Take Quiz Again</button>
+
+        <br>
+
+        <a class="back-link" href="index.html">
+            ← Back to QuizNest
+        </a>
+    </div>
+
+</div>
+
+<script>
+
+const questions = [
+
+    {
+        question: "Which activity sounds most interesting to you?",
+        answers: [
+            ["Designing or creating something new", "creative"],
+            ["Helping and supporting people", "helping"],
+            ["Leading a team or business", "leadership"],
+            ["Solving difficult problems", "analytical"]
+        ]
+    },
+
+    {
+        question: "What is your biggest strength?",
+        answers: [
+            ["Creativity and imagination", "creative"],
+            ["Empathy and understanding", "helping"],
+            ["Confidence and leadership", "leadership"],
+            ["Logic and problem solving", "analytical"]
+        ]
+    },
+
+    {
+        question: "Which work environment would you prefer?",
+        answers: [
+            ["A creative studio", "creative"],
+            ["A place where I work with people", "helping"],
+            ["A fast-paced business environment", "leadership"],
+            ["A quiet technical environment", "analytical"]
+        ]
+    },
+
+    {
+        question: "What kind of task do you enjoy most?",
+        answers: [
+            ["Coming up with new ideas", "creative"],
+            ["Supporting someone who needs help", "helping"],
+            ["Making important decisions", "leadership"],
+            ["Analyzing information and finding solutions", "analytical"]
+        ]
+    },
+
+    {
+        question: "What motivates you the most?",
+        answers: [
+            ["Creating something unique", "creative"],
+            ["Making a positive difference", "helping"],
+            ["Achieving big goals", "leadership"],
+            ["Finding the right solution", "analytical"]
+        ]
+    },
+
+    {
+        question: "Which subject would you prefer?",
+        answers: [
+            ["Art and Design", "creative"],
+            ["Psychology and Communication", "helping"],
+            ["Business and Management", "leadership"],
+            ["Math, Science and Technology", "analytical"]
+        ]
+    }
+
+];
+
+let currentQuestion = 0;
+
+let scores = {
+    creative: 0,
+    helping: 0,
+    leadership: 0,
+    analytical: 0
+};
+
+
+function startQuiz() {
+
+    currentQuestion = 0;
+
+    scores = {
+        creative: 0,
+        helping: 0,
+        leadership: 0,
+        analytical: 0
+    };
+
+    document.getElementById("intro").classList.add("hidden");
+    document.getElementById("result").classList.add("hidden");
+    document.getElementById("quiz").classList.remove("hidden");
+
+    showQuestion();
+}
+
+
+function showQuestion() {
+
+    const q = questions[currentQuestion];
+
+    document.getElementById("questionNumber").textContent =
+        "Question " + (currentQuestion + 1) + " of " + questions.length;
+
+    document.getElementById("question").textContent = q.question;
+
+    const answersDiv = document.getElementById("answers");
+
+    answersDiv.innerHTML = "";
+
+    q.answers.forEach(function(answer) {
+
+        const button = document.createElement("button");
+
+        button.className = "answer";
+
+        button.textContent = answer[0];
+
+        button.onclick = function() {
+            selectAnswer(answer[1]);
+        };
+
+        answersDiv.appendChild(button);
+
+    });
+}
+
+
+function selectAnswer(type) {
+
+    scores[type]++;
+
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+
+        showQuestion();
+
+    } else {
+
+        showResult();
+
+    }
+}
+
+
+function showResult() {
+
+    document.getElementById("quiz").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+
+    let resultType = Object.keys(scores).reduce(function(a, b) {
+        return scores[a] > scores[b] ? a : b;
+    });
+
+    const results = {
+
+        creative: {
+            title: "You May Suit a Creative Career 🎨",
+            text: "You seem imaginative, curious and full of ideas. Careers involving design, writing, media, art, marketing or content creation may be a good match for your strengths."
+        },
+
+        helping: {
+            title: "You May Suit a Helping Career 💙",
+            text: "You seem caring, understanding and people-focused. Careers involving teaching, counseling, healthcare, communication or social services may suit your personality."
+        },
+
+        leadership: {
+            title: "You May Suit a Leadership Career 🚀",
+            text: "You appear confident, goal-oriented and comfortable making decisions. Business, management, entrepreneurship, sales or leadership roles may be a good fit."
+        },
+
+        analytical: {
+            title: "You May Suit an Analytical Career 🧠",
+            text: "You seem logical, curious and interested in solving problems. Technology, engineering, science, finance, data or research careers may match your strengths."
+        }
+
+    };
+
+    document.getElementById("resultTitle").textContent =
+        results[resultType].title;
+
+    document.getElementById("resultText").textContent =
+        results[resultType].text;
+}
+
+
+function restartQuiz() {
+
+    document.getElementById("result").classList.add("hidden");
+
+    document.getElementById("intro").classList.remove("hidden");
+
+}
+
+</script>
+
+</body>
+</html>
